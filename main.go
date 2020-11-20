@@ -17,12 +17,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = data.Initialize()
+	err = data.Initialize("host=postgres user=admin password=adminpass DB.name=auth port=5432 sslmode=disable")
 	if err != nil {
 		panic(err)
 	}
 	e := echo.New()
 	e.POST("/login", handler.PostLogin)
 	e.POST("/register", handler.PostRegister)
+	e.GET("/jwks", handler.GetJWKs)
 	e.Logger.Fatal(e.Start(":80"))
 }

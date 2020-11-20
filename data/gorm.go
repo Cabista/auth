@@ -1,16 +1,18 @@
 package data
 
 import (
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var Database *gorm.DB
 
-func Initialize() error {
+func Initialize(dsn string) error {
 	var err error
 
-	Database, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	Database, err = gorm.Open(postgres.New(postgres.Config{
+		DSN: dsn,
+	}), &gorm.Config{})
 	if err != nil {
 		return err
 	}

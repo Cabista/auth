@@ -10,7 +10,9 @@ import (
 )
 
 var PrivateKey *rsa.PrivateKey
-var JWK *jwk.Key
+var KeyID string
+var JWK jwk.Key
+var JWKSet jwk.Set
 
 func LoadKeys(key string, pass string) error {
 	var err error
@@ -22,6 +24,11 @@ func LoadKeys(key string, pass string) error {
 	if err != nil {
 		return err
 	}
+
+	JWKSet = jwk.Set{
+		Keys: []jwk.Key{JWK},
+	}
+
 	return nil
 }
 
@@ -42,10 +49,13 @@ func LoadRSAPrivate(file string, pass string) (*rsa.PrivateKey, error) {
 	return pk, nil
 }
 
-func LoadJWK(key *rsa.PrivateKey) (*jwk.Key, error) {
-	jwk, err := jwk.New(key)
+func LoadJWK(key *rsa.PrivateKey) (jwk.Key, error) {
+	JWKKey, err := jwk.New(key)
 	if err != nil {
 		return nil, err
 	}
-	return &jwk, nil
+
+	jwk.AssignKeyID(JWKKey)
+
+	return JWKKey, nil
 }

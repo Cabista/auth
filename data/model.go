@@ -14,6 +14,14 @@ type User struct {
 }
 
 type Permission struct {
-	Resource string
-	Action   string
+	gorm.Model
+	RoleID    uint
+	Resource  string
+	Action    string
+	Permitted bool
+}
+
+type Role struct {
+	gorm.Model
+	Name string
 }

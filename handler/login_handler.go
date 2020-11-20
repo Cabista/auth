@@ -9,6 +9,7 @@ import (
 	"github.com/cabista/auth/secure"
 	"github.com/labstack/echo"
 	"github.com/lestrrat-go/jwx/jwa"
+	"github.com/lestrrat-go/jwx/jwk"
 	"github.com/lestrrat-go/jwx/jwt"
 	"github.com/lestrrat-go/jwx/jwt/openid"
 	"golang.org/x/crypto/bcrypt"
@@ -61,9 +62,11 @@ func PostLogin(c echo.Context) error {
 	tok.Set(jwt.SubjectKey, "https://github.com/cabista/auth")
 	tok.Set(jwt.IssuedAtKey, time.Now())
 	tok.Set(jwt.NotBeforeKey, time.Now())
+
 	//set expiry for 1 day
 	tok.Set(jwt.ExpirationKey, time.Now().Add(time.Duration(time.Hour*24)))
 	tok.Set(openid.EmailKey, user.Email)
+	tok.Set(jwk.KeyIDKey, secure.JWK.KeyID())
 
 	signedJwt, err := jwt.Sign(tok, jwa.RS256, secure.PrivateKey)
 
@@ -124,4 +127,8 @@ func PostRegister(c echo.Context) error {
 	// })
 
 	return c.JSON(http.StatusOK, &user)
+}
+
+func GetJWKs(c echo.Context) error {
+	return c.JSON(http.StatusOK, &secure.JWKSet)
 }

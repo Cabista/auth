@@ -1,0 +1,22 @@
+version: "3.8"
+services: 
+  postgres:
+    image: postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpass
+    networks: 
+      - internal
+  auth:
+    build: .
+    ports:
+      - "80:80"
+    depends_on: 
+      - postgres
+    networks: 
+      - internal
+networks: 
+  internal: 
+    driver: bridge

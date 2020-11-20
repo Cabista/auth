@@ -9,6 +9,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.5 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/crypto v0.0.0-20201117144127-c1f2f97bffc9
+	gorm.io/driver/postgres v1.0.5 // indirect
 	gorm.io/driver/sqlite v1.1.3
 	gorm.io/gorm v1.20.7
 )
