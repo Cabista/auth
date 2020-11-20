@@ -1,15 +1,12 @@
-module github.com/cabista/auth
+module github.com/Cabista/auth
 
 go 1.15
 
 require (
+	github.com/cabista/auth v0.0.0-20201120182852-b284d2aff379
 	github.com/labstack/echo v3.3.10+incompatible
-	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/lestrrat-go/jwx v1.0.5
-	github.com/mattn/go-sqlite3 v1.14.5 // indirect
-	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/crypto v0.0.0-20201117144127-c1f2f97bffc9
-	gorm.io/driver/postgres v1.0.5 // indirect
-	gorm.io/driver/sqlite v1.1.3
+	gorm.io/driver/postgres v1.0.5
 	gorm.io/gorm v1.20.7
 )
