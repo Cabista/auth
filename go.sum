@@ -1,6 +1,14 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/cabista/auth v0.0.0-20201120182852-b284d2aff379 h1:AIyyeMv/7VdFOD/H7mWhEskrEmbyES04lZVYQGWFxYY=
 github.com/cabista/auth v0.0.0-20201120182852-b284d2aff379/go.mod h1:Ov2bPofru6pjKbhOnjT6uj9wyRCvnFTca+WJvAawT/k=
+github.com/cabista/x v0.0.0-20201121202255-03c065b76aed h1:6f+txJJP3Aq/6Ms68IY9NDamX/ZyWFSGRV1DqIkNQNo=
+github.com/cabista/x v0.0.0-20201121202255-03c065b76aed/go.mod h1:juCV9bU7HVJ4DnRN/57WrGBmtBAnKAqUBTWo3frVrNw=
+github.com/cabista/x v0.0.0-20201121202802-f92fe789c51d h1:qXJnr0XleVt9y/Alv9lIr0yVzSYJujrcfyq15x2Dy/s=
+github.com/cabista/x v0.0.0-20201121202802-f92fe789c51d/go.mod h1:juCV9bU7HVJ4DnRN/57WrGBmtBAnKAqUBTWo3frVrNw=
+github.com/cabista/x v0.0.0-20201121203545-f2a9ab1bc113 h1:Sayi6RwQCu4wIdePoI/jeCi5M/ALwFIfXK3a6Ne2kOs=
+github.com/cabista/x v0.0.0-20201121203545-f2a9ab1bc113/go.mod h1:juCV9bU7HVJ4DnRN/57WrGBmtBAnKAqUBTWo3frVrNw=
+github.com/cabista/x v0.0.0-20201121204101-b63e60b161f2 h1:CcaaPGe9cGubb2M1ntycOzp8/vIDwgPZVyEx/efb6co=
+github.com/cabista/x v0.0.0-20201121204101-b63e60b161f2/go.mod h1:juCV9bU7HVJ4DnRN/57WrGBmtBAnKAqUBTWo3frVrNw=
 github.com/cockroachdb/apd v1.1.0 h1:3LFP3629v+1aKXU5Q37mxmRxX/pIu1nijXydLShEq5I=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
@@ -118,6 +126,8 @@ github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/rs/xid v1.2.1/go.mod h1:+uKXf+4Djp6Md1KODXJxgGQPKngRmWyn10oCKFzNHOQ=
 github.com/rs/zerolog v1.13.0/go.mod h1:YbFCdg8HfsridGWAh22vktObvhZbQsZXe4/zB0OKkWU=
 github.com/rs/zerolog v1.15.0/go.mod h1:xYTKnLHcpfU2225ny5qZjxnj9NvkumZYjJHlAThCjNc=
+github.com/rs/zerolog v1.20.0 h1:38k9hgtUBdxFwE34yS8rTHmHBa4eN16E4DJlv177LNs=
+github.com/rs/zerolog v1.20.0/go.mod h1:IzD0RJ65iWH0w97OQQebJEvTZYvsCUm9WVLWBQrJRjo=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24/go.mod h1:M+9NzErvs504Cn4c5DxATwIqPbtswREoFCre64PpcG4=
 github.com/shopspring/decimal v0.0.0-20200227202807-02e2044944cc h1:jUIKcSPO9MoMJBbEoyE/RJoE8vz7Mb8AjvifMMwSyvY=
@@ -193,6 +203,7 @@ golang.org/x/tools v0.0.0-20190311212946-11955173bddd/go.mod h1:LCzVGOaR6xXOjkQ3
 golang.org/x/tools v0.0.0-20190425163242-31fd60d6bfdc/go.mod h1:RgjU9mgBXZiqYHBnxXauZ1Gv1EHHAz9KjViQ78xBX0Q=
 golang.org/x/tools v0.0.0-20190621195816-6e04913cbbac/go.mod h1:/rFqwRUd4F7ZHNgwSSTFct+R/Kf4OFW1sUzUTQQTgfc=
 golang.org/x/tools v0.0.0-20190823170909-c4a336ef6a2f/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
+golang.org/x/tools v0.0.0-20190828213141-aed303cbaa74/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
 golang.org/x/tools v0.0.0-20191029041327-9cc4af7d6b2c/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
 golang.org/x/tools v0.0.0-20191029190741-b9c20aec41a5/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
 golang.org/x/tools v0.0.0-20191119224855-298f0cb1881e/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
