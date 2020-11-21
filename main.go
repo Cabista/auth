@@ -12,7 +12,6 @@ func main() {
 	// if err != nil {
 	// 	panic(err)
 	// }
-
 	err := secure.LoadKeys("./private.pem", "private")
 	if err != nil {
 		panic(err)
