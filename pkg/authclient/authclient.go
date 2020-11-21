@@ -2,6 +2,7 @@ package authclient
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/labstack/echo"
 	"github.com/lestrrat-go/jwx/jwk"
@@ -29,7 +30,11 @@ func NewAuthClient(url string) (*AuthClient, error) {
 func (a *AuthClient) ValidateRequestMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		header := c.Request().Header.Get("Authorization")
-		a.ValidateToken(header)
+		token, err := a.ValidateToken(header)
+		if err != nil {
+			return c.JSON(http.StatusUnauthorized, nil)
+		}
+		c.Set("jwt", token)
 		return next(c)
 	}
 }
