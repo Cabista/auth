@@ -3,6 +3,7 @@ package authclient
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo"
 	"github.com/lestrrat-go/jwx/jwk"
@@ -11,18 +12,17 @@ import (
 )
 
 type AuthClient struct {
-	URL    string
-	JwkSet *jwk.Set
+	JwkSet  *jwk.Set
+	Subject string
 }
 
-func NewAuthClient(url string) (*AuthClient, error) {
+func NewAuthClient(url string, subject string) (*AuthClient, error) {
 	set, err := jwk.Fetch(url)
 	if err != nil {
 		return nil, err
 	}
 
 	return &AuthClient{
-		URL:    url,
 		JwkSet: set,
 	}, nil
 }
@@ -30,7 +30,7 @@ func NewAuthClient(url string) (*AuthClient, error) {
 func (a *AuthClient) ValidateRequestMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		header := c.Request().Header.Get("Authorization")
-		token, err := a.ValidateToken(header)
+		token, err := a.ValidateToken(header, a.Subject)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, nil)
 		}
@@ -39,7 +39,7 @@ func (a *AuthClient) ValidateRequestMiddleware(next echo.HandlerFunc) echo.Handl
 	}
 }
 
-func (a *AuthClient) ValidateToken(token string) (jwt.Token, error) {
+func (a *AuthClient) ValidateToken(token string, subject string) (jwt.Token, error) {
 	tok, err := jwt.ParseString(token)
 	if err != nil {
 		return nil, err
@@ -58,14 +58,18 @@ func (a *AuthClient) ValidateToken(token string) (jwt.Token, error) {
 		_, kidErr = jws.VerifyWithJWK([]byte(token), kid)
 	}
 
-	if kidErr != nil {
+	if kidErr == nil {
 		return nil, fmt.Errorf("Invalid KID")
 	}
 
-	err = jwt.Verify(tok)
+	err = jwt.Verify(tok, jwt.WithSubject(subject))
 
 	if err != nil {
 		return nil, err
+	}
+
+	if tok.NotBefore().Before(time.Now()) {
+		return nil, fmt.Errorf("nbf not satisfied")
 	}
 
 	return tok, nil
