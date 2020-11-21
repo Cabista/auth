@@ -14,15 +14,10 @@ type AuthClient struct {
 	JwkSet *jwk.Set
 }
 
-func NewAuthClient(url string, keyID string) (*AuthClient, error) {
+func NewAuthClient(url string) (*AuthClient, error) {
 	set, err := jwk.Fetch(url)
 	if err != nil {
 		return nil, err
-	}
-
-	keys := set.LookupKeyID(keyID)
-	if len(keys) == 0 {
-		return nil, fmt.Errorf("No keys were found with the provided ID")
 	}
 
 	return &AuthClient{
