@@ -32,6 +32,7 @@ func (a *AuthClient) ValidateRequestMiddleware(next echo.HandlerFunc) echo.Handl
 		header := c.Request().Header.Get("Authorization")
 		token, err := a.ValidateToken(header, a.Subject)
 		if err != nil {
+			fmt.Println(err)
 			return c.JSON(http.StatusUnauthorized, nil)
 		}
 		c.Set("jwt", token)

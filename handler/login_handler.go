@@ -59,7 +59,7 @@ func PostLogin(c echo.Context) error {
 
 	//user is authenticated
 	tok := openid.New()
-	tok.Set(jwt.SubjectKey, "https://github.com/cabista/auth")
+	tok.Set(jwt.SubjectKey, "https://github.com/cabista")
 	tok.Set(jwt.IssuedAtKey, time.Now())
 	tok.Set(jwt.NotBeforeKey, time.Now())
 
