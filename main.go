@@ -4,10 +4,12 @@ import (
 	"github.com/cabista/auth/data"
 	"github.com/cabista/auth/handler"
 	"github.com/cabista/auth/secure"
+	"github.com/cabista/x/zerologx"
 	"github.com/labstack/echo"
 )
 
 func main() {
+	zerologx.PrettyLogger()
 	// pk, err := rsa.GenerateKey(rand.Reader, 2048)
 	// if err != nil {
 	// 	panic(err)
@@ -21,6 +23,7 @@ func main() {
 		panic(err)
 	}
 	e := echo.New()
+	e.Use(zerologx.Process)
 	e.POST("/login", handler.PostLogin)
 	e.POST("/register", handler.PostRegister)
 	e.GET("/jwks", handler.GetJWKs)
