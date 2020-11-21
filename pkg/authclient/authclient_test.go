@@ -91,6 +91,35 @@ func TestValidateTokenInvalidExp(t *testing.T) {
 	}
 }
 
+func TestValidateTokenInvalidKid(t *testing.T) {
+	err := Setup()
+	if err != nil {
+		t.Error(err)
+	}
+
+	token := jwt.New()
+	token.Set(jwt.SubjectKey, "https://github.com/cabista")
+	token.Set(jwt.IssuedAtKey, time.Now())
+	token.Set(jwt.NotBeforeKey, time.Now())
+
+	//set expiry for 1 day
+	token.Set(jwt.ExpirationKey, time.Now())
+	token.Set(jwk.KeyIDKey, "invalid")
+
+	signedJwt, err := jwt.Sign(token, jwa.RS256, pk)
+	if err != nil {
+		t.Error(err)
+	}
+
+	_, err = client.ValidateToken(string(signedJwt), "https://github.com/cabista")
+	if err.Error() == "Invalid KID" {
+		return
+	}
+	if err != nil {
+		t.Error(err)
+	}
+}
+
 func TestValidateTokenInvalidNBF(t *testing.T) {
 	err := Setup()
 	if err != nil {
@@ -146,5 +175,17 @@ func TestValidateTokenInvalidSub(t *testing.T) {
 	}
 	if err != nil {
 		t.Error(err)
+	}
+}
+
+func TestValidateTokenInvalidFormat(t *testing.T) {
+	err := Setup()
+	if err != nil {
+		t.Error(err)
+	}
+
+	_, err = client.ValidateToken("dwiiwn", "")
+	if err == nil {
+		t.Errorf("token should of thrown a error")
 	}
 }
