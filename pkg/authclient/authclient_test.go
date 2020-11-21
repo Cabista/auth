@@ -89,6 +89,7 @@ func TestValidateTokenInvalidExp(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	t.Errorf("Did not throw exp not satisfied")
 }
 
 func TestValidateTokenInvalidKid(t *testing.T) {
@@ -118,6 +119,8 @@ func TestValidateTokenInvalidKid(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+
+	t.Errorf("Did not throw Invalid KID")
 }
 
 func TestValidateTokenInvalidNBF(t *testing.T) {
@@ -129,7 +132,7 @@ func TestValidateTokenInvalidNBF(t *testing.T) {
 	token := jwt.New()
 	token.Set(jwt.SubjectKey, "https://github.com/cabista")
 	token.Set(jwt.IssuedAtKey, time.Now())
-	token.Set(jwt.NotBeforeKey, time.Date(1, 1, 1, 1, 1, 1, 1, time.UTC))
+	token.Set(jwt.NotBeforeKey, time.Now().AddDate(1, 0, 0))
 
 	//set expiry for 1 day
 	token.Set(jwt.ExpirationKey, time.Now().Add(time.Duration(time.Hour*24)))
@@ -147,6 +150,8 @@ func TestValidateTokenInvalidNBF(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+
+	t.Errorf("Did not throw nbf not satisfied")
 }
 
 func TestValidateTokenInvalidSub(t *testing.T) {
@@ -176,6 +181,8 @@ func TestValidateTokenInvalidSub(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+
+	t.Errorf("Did not throw sub not satisfied")
 }
 
 func TestValidateTokenInvalidFormat(t *testing.T) {
