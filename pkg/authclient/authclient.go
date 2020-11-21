@@ -3,7 +3,6 @@ package authclient
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/labstack/echo"
 	"github.com/lestrrat-go/jwx/jwk"
@@ -69,9 +68,9 @@ func (a *AuthClient) ValidateToken(token string, subject string) (jwt.Token, err
 		return nil, err
 	}
 
-	if tok.NotBefore().Before(time.Now()) {
-		return nil, fmt.Errorf("nbf not satisfied")
-	}
+	// if tok.NotBefore().Before(time.Now()) {
+	// 	return nil, fmt.Errorf("nbf not satisfied")
+	// }
 
 	return tok, nil
 }
